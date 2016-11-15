@@ -92,6 +92,35 @@ public class UserActivity extends AppCompatActivity {
         }
         else if(userType.equalsIgnoreCase("manager")){
             mListHeadingTextView.setText("Delivery Person");
+
+            ArrayList<String> subs = new ArrayList<>();
+            final ChildListAdapater adapater = new ChildListAdapater(subs,this);
+            mChildListView.setAdapter(adapater);
+            mDatabaseReference = mFirebaseDatabase.getReference().child("managers").child(user).child("deliveryperson");
+            mDatabaseReference.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    String sub = dataSnapshot.getValue(String.class);
+                    adapater.add(sub);
+                    adapater.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
         }
         else{
             mListHeadingTextView.setText("Customers");
