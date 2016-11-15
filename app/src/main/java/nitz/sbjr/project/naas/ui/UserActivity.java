@@ -1,5 +1,6 @@
 package nitz.sbjr.project.naas.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -86,21 +87,23 @@ public class UserActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.logout){
+            SharedPreferences sharedPreferences = getSharedPreferences("NAAS",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove("type");
+            editor.remove("user");
+            editor.commit();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class) ;
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
         if(userType.equalsIgnoreCase("customer")){
-            if(item.getItemId()==R.id.logout){
 
-            }
-            else{
                 //TODO:Notify vacation
-            }
         }
         else if(userType.equalsIgnoreCase("manager")){
-            if(item.getItemId()==R.id.logout){
-
-            }
-            else{
                 //TODO:Generate summary
-            }
         }
         else{
 
