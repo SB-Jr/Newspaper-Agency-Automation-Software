@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/remind_bill"
+        android:title="remind bill payment"/>
+
+    <item
+        android:id="@+id/remove_customer"
+        android:title="remove custmer"/>
+
+</menu>

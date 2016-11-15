@@ -38,14 +38,14 @@
             android:layout_marginBottom="24dp" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_activity_fab"
+            android:id="@+id/generate_bill_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="@drawable/ic_add_white_24dp"
+            android:src="@drawable/ic_attach_money_white_24dp"
             app:elevation="6dp"
             app:fabSize="normal"
             app:layout_anchor="@id/child_list"
