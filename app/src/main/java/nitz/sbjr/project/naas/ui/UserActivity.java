@@ -92,6 +92,9 @@ public class UserActivity extends AppCompatActivity {
         }
         else if(userType.equalsIgnoreCase("manager")){
             mListHeadingTextView.setText("Delivery Person");
+        }
+        else{
+            mListHeadingTextView.setText("Customers");
 
             ArrayList<String> subs = new ArrayList<>();
             final ChildListAdapater adapater = new ChildListAdapater(subs,this);
@@ -121,9 +124,6 @@ public class UserActivity extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
                 }
             });
-        }
-        else{
-            mListHeadingTextView.setText("Customers");
         }
 
         mAddActivityFAB.setOnClickListener(new View.OnClickListener() {
