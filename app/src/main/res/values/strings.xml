@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NAAS</string>
+
+
+    <string-array name="login_types">
+        <item>Manager</item>
+        <item>Customer</item>
+        <item>Delivery Person</item>
+    </string-array>
+</resources>

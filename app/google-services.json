@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "284365439549",
+    "firebase_url": "https://naas-86191.firebaseio.com",
+    "project_id": "naas-86191",
+    "storage_bucket": "naas-86191.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284365439549:android:c7aee3a660342e76",
+        "android_client_info": {
+          "package_name": "nitz.sbjr.project.naas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284365439549-j36f62eu11nrge0c5mi7ub0n5937hdk6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXuO616E3AqzQMKErxu50-Q-uHNlxEL-Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

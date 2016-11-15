@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_signup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="nitz.sbjr.project.naas.ui.SignupActivity">
+
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="User Name"/>
+
+    <EditText
+        android:layout_below="@id/user_name"
+        android:id="@+id/user_customer_address"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Address"/>
+
+
+    <EditText
+        android:layout_below="@id/user_customer_address"
+        android:id="@+id/user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Select a User Id"/>
+
+    <EditText
+        android:layout_below="@id/user_id"
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="enter the password"
+        android:inputType="textVisiblePassword"/>
+
+    <EditText
+        android:layout_below="@id/password"
+        android:id="@+id/password_retype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="retype the password"
+        android:inputType="textVisiblePassword"/>
+
+    <Spinner
+        android:layout_below="@id/password_retype"
+        android:id="@+id/login_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/login_type"
+        android:id="@+id/login_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sign up"/>
+
+</RelativeLayout>
