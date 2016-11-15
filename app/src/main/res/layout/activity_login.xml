@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="UserId" />
+                android:text="Password" />
 
             <EditText
                 android:id="@+id/login_password"
@@ -61,7 +61,7 @@
         <Spinner
             android:id="@+id/logint_type_spinner"
             android:layout_width="match_parent"
-            android:layout_height="?listPreferredItemHeight" />
+            android:layout_height="?attr/listPreferredItemHeight" />
 
        <Button
             android:id="@+id/signin_btn"
