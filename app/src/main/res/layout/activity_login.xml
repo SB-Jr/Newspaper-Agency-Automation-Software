@@ -59,11 +59,6 @@
 
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/logint_type_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/listPreferredItemHeight" />
-
        <Button
             android:id="@+id/signin_btn"
             android:layout_width="match_parent"

@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUserId;
     private EditText mUserPassword;
     private Button login;
-    private Spinner logintTypeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,22 +48,12 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatbasereference = mFirebaseDatabase.getReference().child("users");
-        //mDatbasereference.child("users");
 
 
         mUserId = (EditText) findViewById(R.id.login_id);
         mUserPassword = (EditText) findViewById(R.id.login_password);
         login = (Button) findViewById(R.id.signin_btn);
-        logintTypeSpinner = (Spinner) findViewById(R.id.logint_type_spinner);
 
-
-        /*logintTypeSpinner.setAdapter(new ArrayAdapter<String>(getApplicationContext(),R.layout.login_type_spinner_list_item,new String[]{"Customer","Delivery Person","Manager"}));
-        logintTypeSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                logintTypeSpinner.setSelection(position);
-            }
-        });*/
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("type",userType.getType());
                                 editor.putString("user",userType.getName());
+                                editor.putString("userid",userType.getUserid());
                                 editor.commit();
                                 Intent intent = new Intent(getApplicationContext(), UserActivity.class) ;
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
