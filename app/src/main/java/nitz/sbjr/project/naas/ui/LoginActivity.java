@@ -69,15 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"password too short",Toast.LENGTH_SHORT).show();
                 }
                 else {
-
-                    /*ProgressDialog dialog = new ProgressDialog(getApplicationContext());
-                    dialog.setIndeterminate(true);
-                    dialog.setMessage("Please wait");
-                    dialog.setCancelable(false);
-                    //dialog.show();
-                    */
-
-
+                    
                     ChildEventListener listener = new ChildEventListener() {
                         @Override
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {

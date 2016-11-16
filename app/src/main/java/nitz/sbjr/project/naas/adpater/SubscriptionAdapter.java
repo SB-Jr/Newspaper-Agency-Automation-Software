@@ -10,30 +10,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import nitz.sbjr.project.naas.R;
+import nitz.sbjr.project.naas.pojo.Subscription;
 
 /**
  * Created by sbjr on 11/16/16.
  */
 
-public class ChildListAdapater extends BaseAdapter {
+public class SubscriptionAdapter extends BaseAdapter {
 
-    private ArrayList<String> list;
+    private ArrayList<Subscription> subs = new ArrayList<>();
     private Context context;
 
-
-    public ChildListAdapater(ArrayList<String> list, Context context) {
-        this.list = list;
+    public SubscriptionAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return subs.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return subs.get(position);
     }
 
     @Override
@@ -45,18 +44,26 @@ public class ChildListAdapater extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.login_type_spinner_list_item,parent,false);
+            convertView = inflater.inflate(R.layout.subscription_item,parent,false);
         }
-        ((TextView) convertView.findViewById(R.id.text)).setText(list.get(position));
+        ((TextView) convertView.findViewById(R.id.title)).setText(subs.get(position).getTitle());
+        ((TextView) convertView.findViewById(R.id.cost)).setText(subs.get(position).getPrice());
         return convertView;
     }
 
-
-    public void add(String s){
-        list.add(s);
+    public void add(Subscription s){
+        subs.add(s);
+    }
+    public void remove(String s){
+        for(Subscription sub: subs) {
+            if(sub.getKey().equalsIgnoreCase(s)) {
+                subs.remove(sub);
+            }
+        }
     }
 
-    public ArrayList<String> getList(){
-        return list;
+    public String getKey(int pos){
+        return subs.get(pos).getKey();
     }
+
 }

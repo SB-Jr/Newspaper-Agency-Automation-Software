@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="textEmailAddress"
+                android:text="user3@gmail.com"
                 android:hint="Enter user id" />
         </LinearLayout>
 
@@ -54,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="user3"
                 android:hint="enter the password"
                 android:inputType="textVisiblePassword" />
 

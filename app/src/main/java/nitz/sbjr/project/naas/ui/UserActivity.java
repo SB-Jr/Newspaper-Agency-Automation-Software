@@ -1,21 +1,28 @@
 package nitz.sbjr.project.naas.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -28,24 +35,33 @@ public class UserActivity extends AppCompatActivity {
     private TextView mListHeadingTextView;
     private ListView mChildListView;
     private FloatingActionButton mAddActivityFAB;
+    private CoordinatorLayout mCoordinatorLayout;
 
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
 
+    private UserActivity ref;
 
     private String userType;
     private String user;
+
+
+    private final static int NOTIVY_VACATION_REQUEST=100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        ref = this;
+
+
         mWarningTextView = (TextView) findViewById(R.id.warning_text);
         mListHeadingTextView = (TextView) findViewById(R.id.list_heading);
         mChildListView = (ListView) findViewById(R.id.child_list);
         mAddActivityFAB = (FloatingActionButton) findViewById(R.id.add_activity_fab);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -87,8 +103,6 @@ public class UserActivity extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
                 }
             });
-
-
         }
         else if(userType.equalsIgnoreCase("manager")){
             mListHeadingTextView.setText("Delivery Person");
@@ -159,7 +173,20 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(userType.equalsIgnoreCase("customer")){
+                    AlertDialog.Builder builder  = new AlertDialog.Builder(ref);
+                    builder.setTitle("Modify Subscription");
+                    builder.setItems(new String[]{"Add Subscription","Remove Subscription"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(which==0){
+                                Intent  intent = new Intent(ref,ModifySubscriptionActivity.class);
+                                startActivity(intent);
+                            }else{
 
+                            }
+                        }
+                    });
+                    builder.create().show();
                 }
                 else if(userType.equalsIgnoreCase("manager")){
 
@@ -204,14 +231,32 @@ public class UserActivity extends AppCompatActivity {
         }
         if(userType.equalsIgnoreCase("customer")){
 
+            Intent intent = new Intent(ref,CustomerVacaationActivity.class);
+            startActivityForResult(intent,NOTIVY_VACATION_REQUEST);
                 //TODO:Notify vacation
         }
         else if(userType.equalsIgnoreCase("manager")){
                 //TODO:Generate summary
         }
         else{
+            mChildListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                }
+            });
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==NOTIVY_VACATION_REQUEST){
+            if(resultCode==RESULT_OK){
+                Snackbar.make(mCoordinatorLayout,"Vacation Notified",Snackbar.LENGTH_SHORT).show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
