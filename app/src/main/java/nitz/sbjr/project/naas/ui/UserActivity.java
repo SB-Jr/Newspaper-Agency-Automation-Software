@@ -103,10 +103,27 @@ public class UserActivity extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
                 }
             });
+
+            //adding bill reminder
+            DatabaseReference ref = mFirebaseDatabase.getReference().child("reminders");
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.hasChild(user)){
+                        mWarningTextView.setText("Please Pay Dues");
+                        mWarningTextView.setVisibility(View.VISIBLE);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
         else if(userType.equalsIgnoreCase("manager")){
             mListHeadingTextView.setText("Delivery Person");
 
+            //adding delivery person list
             ArrayList<String> subs = new ArrayList<>();
             final ChildListAdapater adapater = new ChildListAdapater(subs,this);
             mChildListView.setAdapter(adapater);
@@ -139,6 +156,7 @@ public class UserActivity extends AppCompatActivity {
         else{
             mListHeadingTextView.setText("Customers");
 
+            //adding customer list
             ArrayList<String> subs = new ArrayList<>();
             final ChildListAdapater adapater = new ChildListAdapater(subs,this);
             mChildListView.setAdapter(adapater);
@@ -165,6 +183,17 @@ public class UserActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+
+            //list on click listener
+            mChildListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent  = new Intent(ref,CustomerDetailActivity.class);
+                    String cus = ((ChildListAdapater)mChildListView.getAdapter()).getList().get(position);
+                    intent.putExtra("customer",cus);
+                    startActivity(intent);
                 }
             });
         }
@@ -237,14 +266,6 @@ public class UserActivity extends AppCompatActivity {
         }
         else if(userType.equalsIgnoreCase("manager")){
                 //TODO:Generate summary
-        }
-        else{
-            mChildListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                }
-            });
         }
         return super.onOptionsItemSelected(item);
     }
